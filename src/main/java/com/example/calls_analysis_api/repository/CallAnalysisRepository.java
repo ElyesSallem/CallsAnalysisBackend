@@ -1,6 +1,6 @@
 package com.example.calls_analysis_api.repository;
 
-import entities.CallAnalysis;
+import com.example.calls_analysis_api.entities.CallAnalysis;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

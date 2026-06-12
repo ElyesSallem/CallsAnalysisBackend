@@ -2,14 +2,12 @@ package com.example.calls_analysis_api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.persistence.autoconfigure.EntityScan;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"com.example.calls_analysis_api", "entities"})
 public class CallsAnalysisApiApplication {
 
 	public static void main(String[] args) {

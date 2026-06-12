@@ -2,7 +2,7 @@ package com.example.calls_analysis_api.service;
 
 import com.example.calls_analysis_api.dto.CallResponse;
 import com.example.calls_analysis_api.repository.CallAnalysisRepository;
-import entities.CallAnalysis;
+import com.example.calls_analysis_api.entities.CallAnalysis;
 import tools.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

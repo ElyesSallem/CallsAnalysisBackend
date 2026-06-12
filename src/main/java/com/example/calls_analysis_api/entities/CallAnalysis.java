@@ -1,4 +1,4 @@
-package entities;
+package com.example.calls_analysis_api.entities;
 
 import tools.jackson.databind.JsonNode;
 import jakarta.persistence.*;
