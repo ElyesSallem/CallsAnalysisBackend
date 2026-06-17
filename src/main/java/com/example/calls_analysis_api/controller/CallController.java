@@ -18,14 +18,14 @@ public class CallController {
     @Autowired
     private CallService callService;
 
-    // Handles POST /api/calls/{id} with list of required fields inside request body
-    @PostMapping("/{id}")
+    // Handles POST /api/calls/{idOrUniqueId} with list of required fields inside request body
+    @PostMapping("/{idOrUniqueId}")
     public CallResponse getCallDetails(
-            @PathVariable Long id,
+            @PathVariable String idOrUniqueId,
             @RequestBody(required = false) CallFilterRequest request,
             HttpServletRequest servletRequest) {
 
-        CallResponse response = callService.getCallResponseById(id);
+        CallResponse response = callService.getCallResponseById(idOrUniqueId);
         List<String> fields = (request != null) ? request.getFields() : null;
 
         if (fields != null && !fields.isEmpty()) {

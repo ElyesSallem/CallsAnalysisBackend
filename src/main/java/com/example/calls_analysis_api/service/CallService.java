@@ -3,6 +3,7 @@ package com.example.calls_analysis_api.service;
 import com.example.calls_analysis_api.dto.CallResponse;
 import com.example.calls_analysis_api.repository.CallAnalysisRepository;
 import com.example.calls_analysis_api.entities.CallAnalysis;
+import com.example.calls_analysis_api.exception.CallAnalysisNotFoundException;
 import tools.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,16 @@ public class CallService {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
-    public CallResponse getCallResponseById(Long id) {
-        CallAnalysis call = callAnalysisRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Call analysis not found for ID: " + id));
+    public CallResponse getCallResponseById(String idOrUniqueId) {
+        CallAnalysis call;
+        try {
+            Long id = Long.parseLong(idOrUniqueId);
+            call = callAnalysisRepository.findById(id)
+                    .orElseThrow(() -> new CallAnalysisNotFoundException("Call analysis not found for ID: " + id));
+        } catch (NumberFormatException e) {
+            call = callAnalysisRepository.findFirstByAudioFilenameContaining(idOrUniqueId)
+                    .orElseThrow(() -> new CallAnalysisNotFoundException("Call analysis not found for unique ID: " + idOrUniqueId));
+        }
 
         CallResponse response = new CallResponse();
         
